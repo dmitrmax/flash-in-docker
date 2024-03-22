@@ -18,8 +18,7 @@ RUN adduser --gecos "user" --disabled-password --shell /bin/bash user
 ADD https://web.archive.org/web/20210000000000id_/https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.465/flash_player_ppapi_linux.x86_64.tar.gz /tmp
 COPY etc /etc
 
-RUN mkdir -p /var/cache/pepperflashplugin-nonfree && \
-    mkdir -p /usr/lib/pepperflashplugin-nonfree && \
+RUN mkdir -p /usr/lib/pepperflashplugin-nonfree && \
     tar -xz -f /tmp/flash_player_ppapi_linux.x86_64.tar.gz -C /usr/lib/pepperflashplugin-nonfree libpepflashplayer.so manifest.json && \
 	chown root:root /usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so && \
 	chmod 644 /usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so && \
