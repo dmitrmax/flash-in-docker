@@ -1,0 +1,10 @@
+#! /bin/sh
+
+result=`expr "$FLASH_VERSION" \> "32.0.0.371"`
+if [ $result -eq 1 ]; then
+    echo "Timebomb"
+    /usr/bin/faketime "2020-12-24 08:15:42" /usr/bin/chromium-browser
+else
+    echo "No timebomb"
+    /usr/bin/chromium-browser
+fi

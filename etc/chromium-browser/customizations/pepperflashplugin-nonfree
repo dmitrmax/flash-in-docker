@@ -1,3 +1,6 @@
 flashso="/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so"
-flashversion=`strings $flashso 2> /dev/null | grep LNX | cut -d ' ' -f 2 | sed -e "s/,/./g"`
-CHROMIUM_FLAGS="$CHROMIUM_FLAGS --ppapi-flash-path=$flashso --ppapi-flash-version=$flashversion"
+result=`expr "$FLASH_VERSION" \> "32.0.0.371"`
+if [ $result -eq 1 ]; then
+   CHROMIUM_FLAGS="$CHROMIUM_FLAGS --ignore-certificate-errors"
+fi
+CHROMIUM_FLAGS="$CHROMIUM_FLAGS --ppapi-flash-path=$flashso --ppapi-flash-version=$FLASH_VERSION"
